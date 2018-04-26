@@ -1,0 +1,58 @@
+<!doctype html><!--声明当前文档类型-->
+<html><!--网页结构开始-->
+	<head>
+        <meta charset="UTF-8"><!--声明网页编码格式-->
+        <meta name="Keywords" content="关键字，关键词">
+        <meta name="Description" content="简介">
+        <title></title>
+        <!--css样式 层叠样式
+            属性：值
+            元素选择器：以标签名称来命名
+            id选择器：以id来命名 #名字
+            class选择器：以class来命名 .命名
+        -->
+        <style>
+            *{margin:0;padding:0;} /* *是通配符：代表页面上所有标签 外内边距为0*/
+            body{
+                background:#000000; /*背景*/
+            }
+            .box{
+                position:relative; /*不动*/
+                width:100%;
+                height:230px;
+                border:1px solid red;
+                margin:100px auto;/*外边距：盒子于盒子之间的距离 取值：上下 左右*/
+                transform-style: preserve-3d; /*声明一个3d效果*/
+                perspective: 800px; /*景深：给父级使用*/
+            }
+            .box img{
+                position:absolute; /*相对定位 要移动*/
+                width:300px;
+                height:230px;
+                -webkit-box-reflect: below 0
+                -webkit-linear-gradient(top,rgba(0,0,0,0.5),rgba(0,0,0,0.1))
+                /*倒影：方向（下） 0 倒影与图像的距离 渐变（上）
+                    rgb 三原色(0-255) a透明度（0-1）
+                */
+            }
+            .box img:nth-child(1){left:100px;} /**/
+            .box img:nth-child(2){left:300px;}
+            .box img:nth-child(3){left:500px;}
+            .box img:nth-child(4){left:700px;}
+            .box img:nth-child(5){left:900px;}
+            .left{transform:translateZ(-100px) rotateY(45deg)}
+            .middle{transform: translateZ(100px)}
+            .right{transform:translateZ(-100px) rotateY(-45deg)}
+        </style>
+    </head>
+    <body><!--可视区域-->
+        <div class="box">
+            <img src="img/1.jpg" width="500" height="335" alt="I'm HMG" class="left">
+            <img src="img/2.jpg" width="500" height="335" alt="I'm HMG" class="left">
+            <img src="img/3.jpg" width="500" height="335" alt="I'm HMG" class="middle">
+            <img src="img/4.jpg" width="500" height="335" alt="I'm HMG" class="right">
+            <img src="img/5.jpg" width="500" height="335" alt="I'm HMG" class="right">
+        </div>
+        <!--div盒子模型：划分页面布局，有宽度高度有样式的那么一个标签-->
+    </body>
+</html>
