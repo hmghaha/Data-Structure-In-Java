@@ -55,4 +55,21 @@
         </div>
         <!--div盒子模型：划分页面布局，有宽度高度有样式的那么一个标签-->
     </body>
+    <script>
+        /*
+            1.拿到所有图片的位置
+            2.点击某张图片 拿到这张图片
+        */
+        var imgL=[]; /*定义一个数组存放图片距离*/
+        for(var i=0;i<5;i++){
+            imgL=parseInt($("img").eq(i).css("left")); /*拿到图片位置*/
+        }
+        $('.box img').click(function(){
+            var nIndex=$(this).index(); //获取当前操作的图片下标
+            //alert(nIndex);   //显示位置
+            for(){
+                
+            }
+        })
+    </script>
 </html>
