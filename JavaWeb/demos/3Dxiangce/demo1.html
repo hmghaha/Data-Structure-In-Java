@@ -34,6 +34,7 @@
                 /*倒影：方向（下） 0 倒影与图像的距离 渐变（上）
                     rgb 三原色(0-255) a透明度（0-1）
                 */
+                transition all 0.5s linear; /*所有的动画在0.5s内执行完成 直线*/
             }
             .box img:nth-child(1){left:100px;} /**/
             .box img:nth-child(2){left:300px;}
@@ -61,15 +62,27 @@
             2.点击某张图片 拿到这张图片
         */
         var imgL=[]; /*定义一个数组存放图片距离*/
+        var lIndex=2;
         for(var i=0;i<5;i++){
-            imgL=parseInt($("img").eq(i).css("left")); /*拿到图片位置*/
+            imgL[i]=parseInt($("img").eq(i).css("left")); /*拿到图片位置*/
         }
         $('.box img').click(function(){
             var nIndex=$(this).index(); //获取当前操作的图片下标
-            //alert(nIndex);   //显示位置
-            for(){
-                
+            alert(nIndex);   //显示位置
+            for(var i=0;i<5;i++){
+                imgL[i]=imgL[i]-200*(nIndex-lIndex); //移动后的位置
+                alert(imgL[i]);
+                $('img').eq(i).css("left",imgL[i]+"px");
             }
+            //添加样式
+            for(var i=0;i<5;i++){
+                $('img').eq(i).removeClass().addClass("left")
+            }
+            for(var i=0;i<5;i++){
+                $('img').eq(i).removeClass().addClass("right")
+            }
+            $(this).removeClass().addClass("now");
+            lIndex=nIndex;
         })
     </script>
 </html>
