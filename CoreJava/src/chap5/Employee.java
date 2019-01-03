@@ -1,6 +1,7 @@
 package chap5;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Employee {
 	private String name;
@@ -27,6 +28,28 @@ public class Employee {
 	
 	public void raiseSalary(double byPercent) {
 		salary += salary * byPercent / 100;
+	}
+	
+	public boolean equals(Object otherObject) {
+		if(this == otherObject) return true;
+	
+		if(otherObject == null) return false;
+		
+		if(getClass() != otherObject.getClass()) return false;
+		
+		Employee other = (Employee) otherObject;
+		
+		return Objects.equals(this.name, other.name)
+				&& salary == other.salary
+				&& Objects.equals(hireDay, other.hireDay);
+	}
+	
+	public int hashCode() {
+		return Objects.hash(name, salary, hireDay);
+	}
+	
+	public String toString(){
+	return getClass().getName()+": "+name+", "+salary+", "+hireDay;
 	}
 
 }
