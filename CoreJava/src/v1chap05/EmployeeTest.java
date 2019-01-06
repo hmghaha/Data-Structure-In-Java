@@ -1,4 +1,4 @@
-package chap5;
+package v1chap05;
 
 /**
  * this programe demonstrates inheritance

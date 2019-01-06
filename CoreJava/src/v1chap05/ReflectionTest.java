@@ -1,4 +1,4 @@
-package chap5;
+package v1chap05;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -64,10 +64,10 @@ public class ReflectionTest {
 			Class[] paramTypes = c.getParameterTypes();
 			for(int j = 0; j < paramTypes.length; j++) {
 				if(j > 0) 
-					System.out.print(", ");
+					System.out.print(", "); //first one "0" don't print
 				System.out.print(paramTypes[j].getName());
 			}
-			System.out.println("),");
+			System.out.println(");");
 		}
 	}
 	
