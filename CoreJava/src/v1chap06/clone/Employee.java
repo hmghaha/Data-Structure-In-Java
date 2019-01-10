@@ -1,4 +1,4 @@
-package chap6;
+package v1chap06.clone;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -16,9 +16,9 @@ public class Employee implements Cloneable{
 	
 	public Employee clone() throws CloneNotSupportedException{
 		//call object clone;
-		Employee cloned = (Employee)super.clone();
+		Employee cloned = (Employee)super.clone(); //浅拷贝
 		//clone mutable fields
-//		cloned.hireDay = (Date)hireDay.clone();
+		cloned.hireDay = (Date)hireDay.clone();
 		return cloned;
 	}
 	

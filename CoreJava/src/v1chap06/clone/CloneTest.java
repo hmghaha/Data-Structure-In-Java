@@ -1,9 +1,9 @@
-package chap6;
+package v1chap06.clone;
 
 
 /**
  * This program demonstrates cloning
- * @author 车舵
+ * @author Code
  *
  */
 public class CloneTest {
@@ -12,13 +12,12 @@ public class CloneTest {
 		// TODO Auto-generated method stub
 		Employee original = new Employee("Hmg", 10000);
 		original.setHireDay(2017, 7, 3);
-		System.out.println(original);
 		try {
 			Employee cloned = (Employee) original.clone();
 			cloned.raiseSalary(10);
 			original.setHireDay(2018, 4, 3);
-			System.out.println(original);
-			System.out.println(cloned);
+			System.out.println("original=" + original);
+			System.out.println("clone=" + cloned);
 		}catch(CloneNotSupportedException e) {
 			e.printStackTrace();
 		}

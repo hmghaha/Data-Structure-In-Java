@@ -1,4 +1,4 @@
-package chap6;
+package v1chap06.lambda;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -9,7 +9,7 @@ import javax.swing.Timer;
 
 /**
  * This program demonstrates the use of Lambda expressions
- * @author 车舵
+ * @author Code
  *
  */
 public class LambdaTest {
@@ -26,7 +26,12 @@ public class LambdaTest {
 		Arrays.sort(planets, (first, second) -> first.length() - second.length());
 		System.out.println(Arrays.toString(planets));
 		
-		Timer T = new Timer(1000, event -> System.out.println("The time is " + new Date()));
+		Timer t = new Timer(1000, event -> System.out.println("The time is " + new Date()));
+		t.start();
+		
+		//keep program running until user selects "OK"
+		JOptionPane.showMessageDialog(null, "Quit Program?");
+		System.exit(0);
 	}
 
 }
