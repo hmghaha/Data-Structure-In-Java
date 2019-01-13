@@ -1,4 +1,4 @@
-package chap7;
+package v1chap07.stackTrace;
 
 import java.util.Scanner;
 

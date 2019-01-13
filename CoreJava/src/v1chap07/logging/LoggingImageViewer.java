@@ -1,4 +1,4 @@
-package chap7;
+package v1chap07.logging;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -24,24 +24,35 @@ import javax.swing.JMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+/**
+ * A modification of the image viewer program that logs various events.
+ * @version 1.1 2019-01-13
+ * @author Code
+ *
+ */
+
 public class LoggingImageViewer {
 
 	public static void main(String[] args) {
+		
+		System.out.println(System.getProperty("user.home")); //为了确认日志位置 C:\Users\Code
 		// TODO Auto-generated method stub
 		if(System.getProperty("java.util.logging.config.class") == null
 				&& System.getProperty("java.util.loggingconfig.file") == null) {
 			try {
-				Logger.getLogger("com.horstmann.corejava").setLevel(Level.ALL);
-				final int LOG_ROTATION_COUNT = 10;
-				Handler handler = new FileHandler("%h/LoggingImagerViewer.log", 0, LOG_ROTATION_COUNT);
-				Logger.getLogger("com.horstmann.corejava").addHandler(handler);
+				Logger.getLogger("com.horstmann.corejava").setLevel(Level.ALL); //建立该日志记录器，设置这个日志记录器的级别为ALL
+				final int LOG_ROTATION_COUNT = 10;  //循环文件数量
+				Handler handler = new FileHandler("%h/Javalog/LoggingImagerViewer.log", 0, LOG_ROTATION_COUNT);
+				/*构造一个文件处理器  %h：系统属性user.home的值
+				 * windowHandle 无需设置？ */
+				Logger.getLogger("com.horstmann.corejava").addHandler(handler); //为日志记录器添加处理器
 			}catch(IOException e) {
 				Logger.getLogger("com.horstmann.core.java").log(Level.SEVERE, "Can't creat log file handler", e);
 			}
 		}
 		
 		EventQueue.invokeLater(() ->{
-			Handler windowHandler = new WindowHandler();
+			Handler windowHandler = new WindowHandler(); //多态 WindowHandler <- StreamHandler <- Handler
 			windowHandler.setLevel(Level.ALL);
 			Logger.getLogger("com.horstmann.corejava").addHandler(windowHandler);
 			
@@ -67,14 +78,16 @@ class ImageViewerFrame extends JFrame{
 	private static Logger logger = Logger.getLogger("com.horstmann.corejava");
 	
 	public ImageViewerFrame() {
-		logger.entering("ImageViewerFrame", "<init>");
+		logger.entering("ImageViewerFrame", "<init>"); //记录一个描述进入方法的日志记录
+		logger.info("to test log info"); //will show in console
+		logger.fine("to test log fine");
 		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 		
 		//set up menu bar
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu menu = new JMenu("File");
+		JMenu menu = new JMenu("File"); //添加菜单
 		menuBar.add(menu);
 		
 		JMenuItem openItem = new JMenuItem("Open");
@@ -83,7 +96,7 @@ class ImageViewerFrame extends JFrame{
 		
 		JMenuItem exitItem = new JMenuItem("Exit");
 		menu.add(exitItem);
-		exitItem.addActionListener(new ActionListener() {
+		exitItem.addActionListener(new ActionListener() { //匿名类
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -96,7 +109,7 @@ class ImageViewerFrame extends JFrame{
 		//use a label to display the image
 		label = new JLabel();
 		add(label);
-		logger.exiting("ImageViewerFrame", "<init>");
+		logger.exiting("ImageViewerFrame", "<init>"); //记录一个描述退出方法的日志记录
 	}
 	
 	private class FileOpenListener implements ActionListener{
@@ -161,8 +174,8 @@ class WindowHandler extends StreamHandler{
 	
 	public void publish(LogRecord record) {
 		if(!frame.isVisible()) return;
-		super.publish(record);
-		flush();
+		super.publish(record); //将日志记录发送到希望的目的地
+		flush(); //刷新所有已经缓冲的数据
 	}
 }
 
