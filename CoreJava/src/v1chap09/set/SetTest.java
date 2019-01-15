@@ -1,10 +1,10 @@
-package chap9;
+package v1chap09.set;
 
 import java.util.*;
 
 /**
  * This program use a set to print all unique words in System.in.
- * @author ³µ¶æ
+ * @author Code
  *
  */
 public class SetTest {
